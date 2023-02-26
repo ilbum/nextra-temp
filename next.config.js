@@ -3,9 +3,14 @@ const withNextra = require('nextra')({
   themeConfig: './theme.config.tsx',
 });
 
+const isProduction = process.env.NODE_ENV === 'production';
+const assetPrefix = isProduction ? '/nextra-temp' : '';
+
 module.exports = {
   ...withNextra(),
   images: {
     unoptimized: true,
   },
+  assetPrefix,
+  basePath: assetPrefix,
 };
